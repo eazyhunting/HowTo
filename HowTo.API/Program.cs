@@ -1,6 +1,4 @@
-using HowTo.API.Extensions;
-using HowTo.Services;
-using HowTo.Services.Interfaces;
+using HowTo.Services.Extensions;
 
 namespace HowTo.API
 {

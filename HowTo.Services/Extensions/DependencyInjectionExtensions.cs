@@ -1,8 +1,7 @@
-﻿using HowTo.Services;
-using HowTo.Services.Interfaces;
-using System.Runtime.CompilerServices;
+﻿using HowTo.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace HowTo.API.Extensions
+namespace HowTo.Services.Extensions
 {
     public static class DependencyInjectionExtensions
     {
