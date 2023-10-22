@@ -6,7 +6,7 @@ namespace HowTo.Services
 {
     public class VersionService : IVersionService
     {
-        public async Task<VersionComparisonResultModel> Compare(VersionComparisonModel comparisonModel)
+        public async Task<VersionComparisonResultModel> CompareAsync(VersionComparisonModel comparisonModel)
         {
             var version1 = new FivePartVersion(comparisonModel.BaseVersion);
             var version2 = new FivePartVersion(comparisonModel.VersionToCompare);

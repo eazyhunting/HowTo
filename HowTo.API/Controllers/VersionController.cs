@@ -15,12 +15,12 @@ namespace HowTo.API.Controllers
             _versionService = versionService;
         }
 
-        [HttpPost]
+        [HttpPost("compare")]
         public async Task<IActionResult> Compare(VersionComparisonModel comparisonModel)
         {
             try
             {
-                var response = await _versionService.Compare(comparisonModel);
+                var response = await _versionService.CompareAsync(comparisonModel);
                 return Ok(response);
             } catch (Exception ex)
             {

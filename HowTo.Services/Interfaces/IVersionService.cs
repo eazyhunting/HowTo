@@ -9,6 +9,6 @@ namespace HowTo.Services.Interfaces
 {
     public interface IVersionService
     {
-        Task<VersionComparisonResultModel> Compare(VersionComparisonModel comparisonModel);
+        Task<VersionComparisonResultModel> CompareAsync(VersionComparisonModel comparisonModel);
     }
 }

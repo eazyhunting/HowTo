@@ -24,7 +24,7 @@ namespace HowTo.Tests
             model.VersionToCompare = versionToCompare;
 
             // act
-            var actual = await _sut.Compare(model);
+            var actual = await _sut.CompareAsync(model);
 
             // assert
             Assert.True(actual.Result == expectedResult);
@@ -39,7 +39,7 @@ namespace HowTo.Tests
             model.BaseVersion = "asdf";
 
             // act 
-            Task act() => _sut.Compare(model);
+            Task act() => _sut.CompareAsync(model);
 
             // assert
             await Assert.ThrowsAsync<ArgumentException>(act);
