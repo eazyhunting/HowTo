@@ -8,6 +8,7 @@ namespace HowTo.Services.Extensions
         public static void RegisterDependencies(this IServiceCollection services)
         {
             services.AddTransient<IVersionService, VersionService>();
+            services.AddTransient<IStringService, StringService>();
         }
     }
 }
