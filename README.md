@@ -61,3 +61,5 @@ The solution uses .NET Core 6 and at the time of this writting consists of 4 pro
        }   
    }
    ```
+- VersionService
+  
