@@ -14,8 +14,27 @@ The solution uses .NET Core 6 and at the time of this writting consists of 4 pro
 # Points of Interest
 
 - Configure Dependency Injection:
-  I'm registering my services in the program.cs as you might expect.
+  So we know that a standard way of registering your dependencies would be to do so directly in the program.cs file as such:
   `builder.Services.AddTransient<IVersionService, VersionService>();`
+
+  While this is great for small projects, as your solution grows you will get an extremely squirrely program.cs. You may also introduce dependencies where you don't really want them such as if you were to register your data dependencies in your controller. Remember your controllers should not access your data stores directly, they should only do so through services. Additionally, when you have hundreds of services you will have to look through a long list of what could very well be unorganized service registrations. For this I employ the ServiceCollection Extension Pattern.
+
+  What we do is create a static class as you would for any extension methods. Then extend the IServiceCollection interface and register your services in this method.
+  ```
+  public static class DependencyInjectionExtensions
+  {
+      public static void RegisterDependencies(this IServiceCollection services)
+      {
+          services.AddTransient<IVersionService, VersionService>();
+      }
+  }
+  ```
+  Now in your program.cs you can simply call `builder.Services.RegisterDependencies();`
+
+  This may not seem very helpful here but you can use this as a starting point to organize your dependancies. You can create several extension methods for specify types of registrations. Maybe one for `Scoped` & `Singleton` services versus `Transient` services. You might possibly consider seperating them by feature/function say `RegisterUserDependencies` or `RegisterCachingDependencies`. You could do something like `RegisterDataDependencies` but DON'T!!! Remember, your controller shouldnt' have access to your data dependencies.
+
+  At the risk of getting ahead of myself I'll offer you this bit of advice. Move your extension methods into the layer they belong to. In this way your services layer becomes responsible for registering it's own dependencies. You can do this with your data layer as well. So now we've truly isolated and decoupled our layers. If I add a new service to my business layer I only need to edit the code in the services project. I don't need to touch the code in the API layer. 
+  
 - Constructor Injection:
   ```
   public VersionController(IVersionService versionService) { 
