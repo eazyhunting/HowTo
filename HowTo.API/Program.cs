@@ -1,3 +1,4 @@
+using HowTo.API.Extensions;
 using HowTo.Services;
 using HowTo.Services.Interfaces;
 
@@ -16,7 +17,7 @@ namespace HowTo.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddTransient<IVersionService, VersionService>();
+            builder.Services.RegisterDependencies();
 
             var app = builder.Build();
 
