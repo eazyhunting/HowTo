@@ -17,7 +17,7 @@ The solution uses .NET Core 6 and at the time of this writting consists of 4 pro
   So we know that a standard way of registering your dependencies would be to do so directly in the program.cs file as such:
   `builder.Services.AddTransient<IVersionService, VersionService>();`
 
-  While this is great for small projects, as your solution grows you will get an extremely squirrely program.cs. You may also introduce dependencies where you don't really want them such as if you were to register your data dependencies in your controller. Remember your controllers should not access your data stores directly, they should only do so through services. Additionally, when you have hundreds of services you will have to look through a long list of what could very well be unorganized service registrations. For this I employ the ServiceCollection Extension Pattern.
+  While this is great for small projects, as your solution grows you will get an extremely squirrely program.cs. You may also introduce dependencies where you don't really want them such as if you were to register your data dependencies in your controller. Remember your controllers should not access your data stores directly, they should only do so through services. Additionally, when you have hundreds of services you will have to look through a long list of what could very well be unorganized list of service registrations. For this I employ the ServiceCollection Extension Pattern.
 
   What we do is create a static class as you would for any extension methods. Then extend the IServiceCollection interface and register your services in this method.
   ```
