@@ -96,7 +96,8 @@ The solution uses .NET Core 6 and at the time of this writting consists of 4 pro
     2. While .NET provides a very useful `Version` class it only handles 4 part versions. (And the code test wanted 5 parts)
     3. It gives me the opportunity to do some things with implementing system interfaces such as `IComparable`
     4. It allows me to illustrate when, in Domain Driven Design, you would want to have a business object implement logic. Besides if all your business objects contain no business logic that you are actually using an antipattern called the Anemic Domain Model. That said it's important to distinguish between Models and Business Objects. 
-  
+- Isolated Dependencies: I did what I suggested above and moved the dependency injection into the service layer extension Method. This way if we were to package this as a NuGet package we could offer registration of our library using one line of code: `builder.Services.RegisterDependencies();` and the rest is completely transparent to them.
+
 - Shared Dependencies:
   My shared project consists of things I wouldn't mind sharing between the Controllers and my Services. Note that I haven't put my Domain objects in shared because I would not want my Controllers doing anything fancy outside of request/response.
 
